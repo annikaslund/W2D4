@@ -1,3 +1,4 @@
+require 'byebug'
 def first_anagram?(str1,str2)
   chars = str1.chars
   perms = chars.permutation(str1.length)
@@ -28,6 +29,22 @@ def third_anagram?(str1, str2)
   chars == chars2
 end 
 
+def fourth_anagram?(str1, str2)
+  count_hash = Hash.new(0)
+  # count_hash2 = Hash.new(0)
+  
+  str1.each_char do |ch| 
+    count_hash[ch] += 1 
+  end 
+  
+  str2.each_char do |ch2| 
+    count_hash[ch2] -= 1
+  end 
+  
+  count_hash.values.all? {|value| value == 0}
+   
+end
+
 if __FILE__ == $PROGRAM_NAME
-  p third_anagram?("elvis", "lives")
+  p fourth_anagram?("elvis", "lives")
 end
